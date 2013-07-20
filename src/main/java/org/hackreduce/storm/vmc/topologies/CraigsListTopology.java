@@ -34,7 +34,9 @@ public class CraigsListTopology
       System.err.println("Could not load [" + CLFILE + "]");
       e.printStackTrace();
     }
-    
+    /* Instructions:
+     * Set a spout to read from craigslist
+     */
     TopologyBuilder tb = new TopologyBuilder();
     tb.setSpout("CraigsListSpout", new CraigsListSpout(lookup), 1);
     tb.setBolt("CraigsListFeedBolt", new CraigsListFeedBolt(), 2).shuffleGrouping("CraigsListSpout");
