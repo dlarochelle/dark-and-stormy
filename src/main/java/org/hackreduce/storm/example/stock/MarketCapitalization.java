@@ -1,6 +1,7 @@
 package org.hackreduce.storm.example.stock;
 
 import backtype.storm.Config;
+import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;
 import backtype.storm.generated.AlreadyAliveException;
 import backtype.storm.generated.InvalidTopologyException;
@@ -129,6 +130,9 @@ public class MarketCapitalization {
             .newValuesStream()
             .each(new Fields("exchange", "symbol", "max_market_cap"), new LogInput(), new Fields("never_emits"));
 
-        HackReduceStormSubmitter.submitTopology("market-cap", config, builder.build());
+        //HackReduceStormSubmitter.submitTopology("market-cap", config, builder.build());
+        LocalCluster cluster = new LocalCluster();
+        cluster.submitTopology("test", config, builder.build());
+
     }
 }
