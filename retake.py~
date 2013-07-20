@@ -1,0 +1,10 @@
+
+# File input
+r = requests.get(link)
+ks =r.json()['keys']
+
+
+json_list = []
+for strA in ks:
+    bucketVal=key
+    http://cluster-7-slave-06.sl.hackreduce.net:8098/buckets/dark-stormy-stock-state/keys/

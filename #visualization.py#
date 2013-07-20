@@ -1,0 +1,42 @@
+
+import riak
+
+link = 'http://cluster-7-slave-06.sl.hackreduce.net:8098/buckets/dark-stormy-stock-state/keys?keys=true'
+
+bucket = http://cluster-7-slave-00.sl.hackreduce.net:8098/buckets?buckets=true
+
+keys = http://cluster-7-slave-00.sl.hackreduce.net:8098/buckets/snakes-stock-state/keys?keys=true
+
+datum 
+
+# Connect to Riak.
+client = riak.RiakClient(link)
+
+# Choose the bucket to store data in.
+bucket = client.bucket('test')
+
+
+# Supply a key to store data under.
+# The ``data`` can be any data Python's ``json`` encoder can handle.
+person = bucket.new('riak_developer_1', data={
+    'name': 'John Smith',
+    'age': 28,
+    'company': 'Mr. Startup!',
+})
+# Save the object to Riak.
+person.store()
+
+def get_entry_and_comments(entry_slug):
+    entry = entry_bucket.get(entry_slug)
+    comments = []
+
+    # They come out in the order you added them, so there's no
+    # sorting to be done.
+    for comment_link in entry.get_links():
+        # Gets the related object, then the data out of it's value.
+        comments.append(comment_link.get().get_data())
+
+    return {
+        'entry': entry.get_data(),
+         'comments': comments,
+    }
