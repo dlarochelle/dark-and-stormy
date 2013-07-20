@@ -69,6 +69,8 @@ public class CraigsListTopNBolt extends BaseComponent implements IRichBolt
       //emit only if the Top N list changed
       if (Utils.setTopN(q, v, this.n))
         this.collector.emit(new Values(city, title, link, "_OVERALL_"));
+      
+      
     }
     catch(NumberFormatException nfe)
     {return;}
